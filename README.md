@@ -14,4 +14,4 @@ Click on a module to show the commands
 # Contributing:
 If you can make our UI look better, please do
 
-If you want to do make a [UGUI](https://docs.unity3d.com/Manual/com.unity.ugui.html) menu, make a new project instead
+If you want to make a [UGUI](https://docs.unity3d.com/Manual/com.unity.ugui.html) menu, make a new project instead
