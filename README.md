@@ -2,9 +2,10 @@
 Interface to AstralCore with Unity IMGUI 
 
 # Usage:
-Hold `Tab` to see the UI
-Drag the top to move the window
-Click on a module to show the commands
+- Hold `Tab` to see the UI
+- Drag the top to move the window
+- Click on a module to show the commands
+- Change the color by editing `UserData/MelonPrefs.cfg` or make knah support Color/Color32 in UIX
 
 # Supported Types:
 - ConVar\<bool>
