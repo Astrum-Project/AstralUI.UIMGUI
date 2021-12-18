@@ -1,11 +1,11 @@
-﻿using MelonLoader;
+﻿using Astrum.AstralCore.UI;
+using Astrum.AstralCore.UI.Attributes;
+using MelonLoader;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static Astrum.AstralCore.Managers.CommandManager;
-using static Astrum.AstralCore.Managers.ModuleManager;
 
-[assembly: MelonInfo(typeof(Astrum.AstralUI.UIMGUI), "AstralUI.UIMGUI", "0.2.0", downloadLink: "github.com/Astrum-Project/AstralUI.UIMGUI")]
+[assembly: MelonInfo(typeof(Astrum.AstralUI.UIMGUI), "AstralUI.UIMGUI", "1.0.0", downloadLink: "github.com/Astrum-Project/AstralUI.UIMGUI")]
 [assembly: MelonColor(ConsoleColor.DarkMagenta)]
 
 namespace Astrum.AstralUI
@@ -48,7 +48,7 @@ namespace Astrum.AstralUI
         {
             int i = 0;
 
-            foreach (KeyValuePair<string, Module> module in modules)
+            foreach (KeyValuePair<string, Module> module in CoreUI.Modules)
                 if (GUI.Button(new Rect(3, i++ * 22 + 21, 150, 20), module.Key))
                     currentModule = module.Value;
 
@@ -59,19 +59,19 @@ namespace Astrum.AstralUI
         {
             int i = 0;
 
-            foreach (KeyValuePair<string, Command> command in currentModule.commands)
+            foreach (KeyValuePair<string, UIBase> command in currentModule.Commands)
             {
-                if (command.Value is ConVar<bool> cb) 
+                if (command.Value is UIFieldProp<bool> cb) 
                     cb.Value = GUI.Toggle(CreateRect(ref i), cb.Value, command.Key);
-                else if (command.Value is ConVar<float> cf)
+                else if (command.Value is UIFieldProp<float> cf)
                 {
                     GUI.Label(CreateRect(ref i), command.Key + $": ({cf.Value:0.00})");
                     cf.Value = GUI.HorizontalSlider(CreateRect(ref i), cf.Value, cf.Value - 10, cf.Value + 10);
                 }
-                else if (command.Value is Button)
+                else if (command.Value is UIButton)
                 {
                     if (GUI.Button(CreateRect(ref i), command.Key))
-                        (command.Value as Button)?.onClick();
+                        (command.Value as UIButton)?.Click();
                 }
                 else GUI.Label(CreateRect(ref i), command.Key + " (Unsupported type)");
             }
