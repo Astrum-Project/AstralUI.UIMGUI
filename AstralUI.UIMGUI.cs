@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(Astrum.AstralUI.UIMGUI), "AstralUI.UIMGUI", "1.1.0", downloadLink: "github.com/Astrum-Project/AstralUI.UIMGUI")]
+[assembly: MelonInfo(typeof(Astrum.AstralUI.UIMGUI), "AstralUI.UIMGUI", "1.1.1", downloadLink: "github.com/Astrum-Project/AstralUI.UIMGUI")]
 [assembly: MelonColor(ConsoleColor.DarkMagenta)]
 
 namespace Astrum.AstralUI
@@ -26,6 +26,8 @@ namespace Astrum.AstralUI
             MelonPreferences_Category category = MelonPreferences.CreateCategory("Astrum-AstralUI-UIMGUI", "AstralUI UIMGUI");
 
             category.CreateEntry(nameof(color), new Color32(0x56, 0x00, 0xA5, 0xFF), "Color");
+
+            OnPreferencesLoaded();
         }
 
         public override void OnPreferencesSaved() => OnPreferencesLoaded();
